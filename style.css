@@ -1,0 +1,206 @@
+/* body{
+   background:deepskyblue;
+   border-bottom: 400px solid orchid;    
+   font-family: "Trebuchet MS", Arial, sans-serif;
+   }
+*/
+.a1{
+	width: 2em;
+   height: 2em;
+   background-color: #FF0000;
+   position: fixed;
+   top: 0em;
+   left: 0em;	
+	}
+
+.a2{
+	width: 2em;
+   height: 2em;
+   background-color: #00FF00;
+   position: fixed;
+   top: 5em;
+   left: 10em;	
+	}
+
+
+   
+*{
+   margin:0;
+   }
+/*------------------ejemplo ^^ ------------*/
+      .recuadro{
+         position:relative;       
+         width:100px;
+         height:50px;
+         border-top: 120px solid deeppink;
+         border-left: 50px solid transparent;
+         border-right: 50px solid transparent;
+         border-bottom: 0px solid transparent;
+         transform:rotate(-2deg);      
+         z-index:3;
+         
+         }
+         
+      .recuadro1{
+         position:relative;       
+         width:100px;
+         height:100px;
+         border-top: 0px solid transparent;
+         border-left: 50px solid transparent;
+         border-right: 50px solid transparent;      
+         border-bottom: 50px solid hotpink;
+         transform:rotate(-2deg);
+         margin:-270px 0 0 -5px;
+         z-index:2;
+         }
+         
+      .ventana{
+         position:relative;
+         margin:-200px 0 0 -5px;
+         right:-30px;
+         width:50px;
+         height:70px;         
+         border-top: 30px solid white;
+         border-left: 5px solid transparent;
+         border-right: 5px solid transparent;
+         border-bottom: 0px solid transparent;
+         transform:rotate(-4deg);
+         z-index:4;
+         }
+         
+         .puerta{
+         position:relative;
+         margin:130px 0 0 -5px;
+         right:-70px;
+         width:50px;
+         height:100px;         
+         border-top: 50px solid white;
+         border-left: 10px solid transparent;
+         border-right: 10px solid transparent;
+         border-bottom: 0px solid transparent;
+         transform:rotate(-2deg);
+         z-index:5;
+         }
+         
+      #cuadro{
+         width:80%;
+         height:200px;
+         padding:50px;         
+         margin:0 auto;
+         }
+         
+      .sol{
+         width:100px;
+         height:100px;
+         border-radius:100px;
+         behavior: url(pie.htc);
+         background:yellow;
+         }
+         
+      .tree1{
+         width:200px;
+         height:180px;
+         margin:50px 0 0 230px;      
+         position:relative;
+         z-index:20;
+         transform: scale(0.8) rotate(-15deg);
+         }
+         
+      .edificio-todo{
+         width:300px;
+         height:200px;         
+         margin:-190px 0 0 300px;
+         position:relative;
+         z-index:21;
+         }
+      
+      #calle-cont{
+         width:93%;
+         height:380px;
+         overflow:hidden;
+         position:relative;
+         margin:-200px 0 0 200px;
+         }
+      
+      .calle{
+         width:1700px;
+         height:500px;
+         border-radius: 800px / 500px;
+         behavior: url(pie.htc);
+         border:100px solid white;
+         position:relative;
+         z-index:22;
+         }
+      
+      .tree{
+         width:200px;
+         margin:-380px 0 0 500px;         
+         position:relative;
+         z-index:23;
+         transform: scale(1.2) rotate(8deg);
+         }
+                        
+      .arbol1{
+         width:100px;
+         height:80px;
+         border-radius:100px /80px;
+         behavior: url(pie.htc);
+         background:yellowgreen;
+         position:relative;
+         z-index:9;
+         }
+         
+      .arbol2{
+         width:120px;
+         height:100px;
+         border-radius:120px /100px;
+         behavior: url(pie.htc);
+         background:yellowgreen;
+         transform:rotate(-2deg);
+         margin:-50px 0 0 30px;
+         position:relative;
+         z-index:8;
+         }
+         
+      .arbol3{
+         width:120px;
+         height:100px;
+         border-radius:100px /80px;
+         behavior: url(pie.htc);
+         background:yellowgreen;         
+         transform:rotate(5deg);
+         margin:-100px 0 0 -30px;
+         position:relative;
+         z-index:7;
+         }
+         
+      .tronco{
+         width:20px;
+         height:200px;         
+         border-top: 50px solid brown;
+         border-left: 10px solid transparent;
+         border-right: 10px solid transparent;
+         border-bottom: 0px solid transparent;
+         transform:rotate(-2deg);
+         z-index:6;
+         margin:-20px 0 0 30px;
+         position:relative;
+         }
+         
+      /*----------------hack transparencia ie6 WTF!! >o< ----------*/
+      
+      *html .recuadro, *html .tronco, *html .ventana, *html .puerta
+         {
+         border-left: pink;
+         border-right: pink;          
+         border-bottom: pink;
+         filter: chroma(color=pink);
+         }
+         
+      *html .recuadro1
+         {
+         border-left: pink;
+         border-right: pink;          
+         border-right: pink;
+         filter: chroma(color=pink);
+         }
