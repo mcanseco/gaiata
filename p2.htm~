@@ -1,0 +1,41 @@
+	<!DOCTYPE HTML>
+<html lang="en-US">
+   <head>
+      <meta charset="UTF-8">
+      <title>Ejemplo::Paisaje en CSS3</title>
+
+		<style type="text/css">
+
+.a1{
+	width: 2em;
+   height: 2em;
+   -moz-border-radius: 50%;
+   -webkit-border-radius: 50%;
+   border-radius: 50%;
+   background-color: #FF0000;
+   position: fixed;
+   top: 0em;
+   left: 0em;	
+	}
+
+.a2{
+	width: 2em;
+   height: 2em;
+   background-color: #00FF00;
+   position: fixed;
+   top: 5em;
+   left: 10em;	
+	}
+
+
+
+		</style>
+
+
+   </head>
+   <body>      
+      <div class="a1"></div>
+      <div class="a2"></div>
+   </body>
+</html> 
+		
