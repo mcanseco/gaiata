@@ -32,23 +32,29 @@ $m->setlinea($l);
 //$m->muestra_A(0);
 
 
-$t0 = new tramo(0,16);
-//$t1 = new tramo(0,20);
+$t0 = new tramo(0,8);
+$t1 = new tramo(8,8);
 
 $b  = new brazo();
 $b->set_tramo($t0);
-//$b->set_tramo($t1);
+$b->set_tramo($t1);
 
 $g = new gaiata();
+
 $g->set_brazo($b);
 
 $g->set_mapeo($m);
 
-$g->brazos[0]->tramos[0]->tira_sube_sola("#FF0000",2, true,2);
+/*
+$g->brazos[0]->tira_sube_sola_tramo("#00FF00", 0.5, true, 1, -1 , $g->mapeo);
+$g->brazos[0]->tira_sube_sola_tramo("#FFFFFF", 2, true, 1, 0 , $g->mapeo);
+$g->brazos[0]->tira_sube_sola_tramo("#FF0000", 1, true, 1, 1 , $g->mapeo);
+$g->brazos[0]->tira_sube_sola_tramo("#FF0000", 1, true, 1, 1 , $g->mapeo);
+$g->brazos[0]->tira_sube_sola_tramo("#FF0000", 1, true, 1, 1 , $g->mapeo);
+*/
 
-
-
-//$g->brazos[0]->tira_sube("#FF0000",1, true, 2, $g->mapeo);
+$g->brazos[0]->intercala_colores(array("#AAAAAA","#BBBBBB","#CCCCCC"), 0.25, 1, false, 1, -1, $g->mapeo);
+//$g->brazos[0]->tira_sube("#FF0000",1, false, 1, 1, $g->mapeo);
 //$g->brazos[0]->rellena_color("#00FF00",1,$g->mapeo);
 //$g->brazos[0]->tira_degrada_de_a("#FF0000","#0000FF",3,1,$g->mapeo);
 
