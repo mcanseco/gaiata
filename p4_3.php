@@ -4,6 +4,9 @@ require_once("config.php");
 require_once("mapeo.php");
 require_once("gaiata.php");
 
+// Elementos: BRAZOS / AROS / PICAS / GAIATO
+$elementos = array(1,0,0,0);
+
 /*
 echo "RGB2CHR = " . rgb2chr("#414141") . "</br>";
 echo "rgb_bytes2txt($r,$g,$b)= " . rgb_bytes2txt(65,254,253) . "</br>";
@@ -23,7 +26,7 @@ echo var_dump(degradado_ao("#333333",5,80,true));
 
 $l = new linea_mapeada();
 
-$m = new mapeo("trlr3", 16);
+$m = new mapeo("trlr3", 16, $elementos);
 
 $l->trama(0,16,array());
 
@@ -53,7 +56,13 @@ $g->brazos[0]->tira_sube_sola_tramo("#FF0000", 1, true, 1, 1 , $g->mapeo);
 $g->brazos[0]->tira_sube_sola_tramo("#FF0000", 1, true, 1, 1 , $g->mapeo);
 */
 
-$g->brazos[0]->intercala_colores(array("#AAAAAA","#BBBBBB","#CCCCCC"), 0.25, 1, false, 1, 0, $g->mapeo);
+
+ $una  = $g->brazos[0]->intercala_colores(array("#AAAAAA","#BBBBBB","#CCCCCC"), 0.25, 1, false, 1, 0, -1, $g->mapeo);
+ echo $una . "</br>";
+ $dos  = $g->brazos[0]->intercala_colores(array("#AAAAAA","#BBBBBB","#CCCCCC"), 0.25, 1, false, 1, 0, -1, $g->mapeo);
+ echo $dos . "</br>";
+ $tres = $g->brazos[0]->tira_sube_sola("#FFFFFF", 1, true, 1, 0, $una, $g->mapeo);
+ echo $tres . "</br>";;
 //$g->brazos[0]->tira_sube("#FF0000",1, false, 1, 1, $g->mapeo);
 //$g->brazos[0]->rellena_color("#00FF00",1,$g->mapeo);
 //$g->brazos[0]->tira_degrada_de_a("#FF0000","#0000FF",3,1,$g->mapeo);

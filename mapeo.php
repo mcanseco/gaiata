@@ -37,7 +37,6 @@ class linea_mapeada {
   
   }
      
-
 }
 
 
@@ -54,14 +53,21 @@ class mapeo {
 
 
   
-  function __construct($archivo, $ciclo_numero) {
+  function __construct($archivo, $ciclo_numero, $elementos) {
     $this->fp = fopen($archivo . ".dat","w+");
     $this->ft = fopen($archivo . ".txt","w+");
     fwrite($this->fp, chr(FPS) );
     fwrite($this->ft, FPS . "|");
+    foreach($elementos as $e) {
+		fwrite($this->ft, $e);    	
+    }
     $this->bufferi = array_fill(0,$ciclo_numero,COLOR_BASE);
     $this->ciclo = 0;
     $this->ciclo_numero = $ciclo_numero;
+    ob_flush();
+    flush();
+    fflush($this->fp);  
+    fflush($this->ft);
   }
 
   function __destruct() {

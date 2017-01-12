@@ -98,10 +98,10 @@ class mapeo {
     
     // Mapear en el buffer
     foreach ($L as $LED) {
-      deb("Cini = " . $cini . " LED[0] = " . $LED[0] . " ciclo_numero = " . $this->ciclo_numero);
-      deb("Inicio del ciclo = " . ($cini + $LED[0])*$this->ciclo_numero);
-      deb("Desplazamiento = " . $this->lineas[$id]->A[ $tini + $LED[1] ]);
-      deb("Indice buffer = " . ($cini + $LED[0])*$this->ciclo_numero + $this->lineas[$id]->A[ $tini + $LED[1] ] );
+//      deb("Cini = " . $cini . " LED[0] = " . $LED[0] . " ciclo_numero = " . $this->ciclo_numero);
+//      deb("Inicio del ciclo = " . ($cini + $LED[0])*$this->ciclo_numero);
+//      deb("Desplazamiento = " . $this->lineas[$id]->A[ $tini + $LED[1] ]);
+//      deb("Indice buffer = " . ($cini + $LED[0])*$this->ciclo_numero + $this->lineas[$id]->A[ $tini + $LED[1] ] );
 
       $this->buffer[ ($cini + $LED[0])*$this->ciclo_numero + $this->lineas[$id]->A[ $tini + $LED[1] ] ] = $LED[2];
 
