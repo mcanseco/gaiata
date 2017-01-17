@@ -21,7 +21,7 @@ define('BRAZOS_NUM',4);
 define('PICAS_NUM', 8);
 define('PICAS_BAJO_NUM', 5);
 define('PICAS_ALTO_NUM', 3);
-define('AROS_NUM',2);
+define('AROS_NUM',2)
 
 $picas = array(36,39,42,40,40,38,32,24); 
 

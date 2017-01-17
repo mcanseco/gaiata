@@ -311,7 +311,7 @@ class componente {
         $num = ($i+$paso)*$num_ciclo;
         for ($j=($num > $ini ? $ini : $jA); $j<$num; $j++, $ini++) {
           for ($ii=0;$ii<$paso;$ii++) { 
-            array_push($leds, array(($i+$ii),$j,ce($color)));
+            array_push($leds, array(($i+$ii),$j,$color));
             deb("i = " . ($i+$ii). " j = " . $j . " num = " . $num . " num real = " . $i*$num_ciclo );			 
             }
           }          
@@ -324,14 +324,14 @@ class componente {
         $num = (($tamanyo-1)-$num_ciclo*($i+$paso));
         for ($j=($num < $ini ? $ini : $jA); $j>$num;$j--, $ini--) {
           for($ii=0;$ii<$paso;$ii++) {        	
-            array_push($leds, array($i+$ii,$j,ce($color)));
+            array_push($leds, array($i+$ii,$j,$color));
             deb("i = " . ($i+$ii) . " j = " . $j . " num = " . $num);
           }
           $jA = $j;
         }
         }
     }
-    $m->mapea_linea($this->linea_asociada,$cini,$ciclos,$tramoPos,$leds);
+    $m->mapea_linea($this->id,$cini,$ciclos,$tramoPos,$leds);
     deb("Ciclos: " . $this->ciclo . " - " . $this->tramos[0]->get_ciclo() . " - " . $this->tramos[1]->get_ciclo());
     return $cini;
   }

@@ -31,7 +31,7 @@ class gaiata {
 function set_pica(pica $pica) {
     $brazo->id = $this->picas_cuenta++;
     array_push($this->picas, $picas);
-   } 
+    
 
   function set_mapeo(mapeo $mapeo) {
     $this->mapeo = $mapeo;

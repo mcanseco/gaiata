@@ -90,6 +90,7 @@ class mapeo {
     flush();
     fflush($this->fp);  
     fflush($this->ft);
+
   }
   
   function mapea_linea($id, $cini, $ciclos, $tini, $L) {
