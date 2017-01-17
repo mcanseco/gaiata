@@ -13,7 +13,10 @@ $elementos = array(1,0,1,0);
 $g = new gaiata();
 // HW
 $brazosHW = array();
+$arosHW = array();
 $picasHW  = array();
+
+
 $totalH = 0;
 for ($i=0; $i<BRAZOS_NUM;$i++) {
   	$inicioA = 0;
@@ -24,6 +27,16 @@ for ($i=0; $i<BRAZOS_NUM;$i++) {
   		}
   	$totalH += $inicioA;	
 	}
+
+for ($i=0;$i<AROS_NUM;$i++) {
+	$inicioA = 0;
+	$arosHW[$i] = new linea_mapeada();
+  	for ($k=0;$k<count($aros);$k++) {
+  		$arosHW[$i]->trama($inicioA,$aros[$k],array());
+  		$inicioA += $arosHW[$k];
+  		}	
+	}	
+	
 for ($i=0; $i<PICAS_NUM;$i++) {
   	$inicioA = 0;
   	$picasHW[$i] = new linea_mapeada();
@@ -33,14 +46,23 @@ for ($i=0; $i<PICAS_NUM;$i++) {
   		}
   	$totalH += $inicioA;	
 	}
+
 $m = new mapeo("juego_prova1",$totalH,$elementos);
 
 for ($i=0; $i<BRAZOS_NUM;$i++) {
 	$m->setlinea($brazosHW[$i]); 
    }
+
+for ($i=0; $i<AROS_NUM;$i++) {
+	$m->setlinea($arosHW[$i]); 
+   }
+
 for ($i=0; $i<PICAS_NUM;$i++) {
 	$m->setlinea($picasHW[$i]);
    }
+
+$m->setlinea($gaiato);
+
 $g->set_mapeo($m);
 
 // LG
