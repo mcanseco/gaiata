@@ -24,6 +24,9 @@ for ($i=0; $i<BRAZOS_NUM;$i++) {
   		}
   	$totalH += $inicioA;	
 	}
+
+for ($i=0;$i<AROS_NUM)	
+	
 for ($i=0; $i<PICAS_NUM;$i++) {
   	$inicioA = 0;
   	$picasHW[$i] = new linea_mapeada();
@@ -38,7 +41,7 @@ $m = new mapeo("juego_prova1",$totalH,$elementos);
 for ($i=0; $i<BRAZOS_NUM;$i++) {
 	$m->setlinea($brazosHW[$i]); 
    }
-for ($i=BRAZOS_NUM; $i<BRAZOS_NUM+PICAS_NUM;$i++) {
+for ($i=0; $i<PICAS_NUM;$i++) {
 	$m->setlinea($picasHW[$i]);
    }
 $g->set_mapeo($m);
