@@ -21,11 +21,11 @@ define('BRAZOS_NUM',4);
 define('PICAS_NUM', 8);
 define('PICAS_BAJO_NUM', 5);
 define('PICAS_ALTO_NUM', 3);
-define('AROS_NUM',2)
+define('AROS_NUM',2);
 
-$picas = array(36,39,42,40,40,38,32,24); 
+$picas = array(36,39,42,48,48,40,32,24); 
 
-$aros = array(80,40);
+$aros = array(40,80);
 
 $tramos_brazos_fisico = array(array(20, array()), array(20, array()), array(20, array(19)), array(20, array(5,12,13)) , array(20, array(16,17,18,19)) );
 $tramos_brazos_logico = array(20,20,19,17,16);

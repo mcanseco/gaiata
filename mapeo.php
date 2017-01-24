@@ -9,26 +9,34 @@ class linea_mapeada {
   public $A = array();
   private $Ac = 0;
   private $ciclo = 0;
+  private $tamanyo = 0;
  
 
   function devuelve_valor() {
     return $this->id;
   }
+ 
   
+   
   function trama($inicio,$tamanyo,$ocultas) {
     array_push($ocultas,$tamanyo);
     $oi = 0;    
-    for ($t=$inicio;$t<$tamanyo;$t++) {      
+    for ($t=0;$t<$tamanyo;$t++) {      
       if ($t<$ocultas[$oi]) {
-        $this->A[$this->Ac++] = $t;        
+        $this->A[$this->Ac++] = $t + $inicio;        
       } else {      
         if ($t == $ocultas[$oi] ) {
           $oi++;
         }
       }
-    }  
+    }
+    $this->tamanyo += $tamanyo;   
   }
-    
+
+  function devuelve_tamanyo() {
+		return $this->tamanyo;  	
+  	}  
+  
   function muestra_A() {
     
     foreach ($this->A as $av) {
@@ -53,17 +61,18 @@ class mapeo {
 
 
   
-  function __construct($archivo, $ciclo_numero, $elementos) {
+  function __construct($archivo) {
     $this->fp = fopen($archivo . ".dat","w+");
     $this->ft = fopen($archivo . ".txt","w+");
     fwrite($this->fp, chr(FPS) );
     fwrite($this->ft, FPS . "|");
-    foreach($elementos as $e) {
+/*    foreach($elementos as $e) {
 		fwrite($this->ft, $e);    	
     }
-    $this->bufferi = array_fill(0,$ciclo_numero,COLOR_BASE);
+*/ 
+//   $this->bufferi = array_fill(0,$ciclo_numero,COLOR_BASE);
     $this->ciclo = 0;
-    $this->ciclo_numero = $ciclo_numero;
+    $this->ciclo_numero = 0; // $ciclo_numero;
     ob_flush();
     flush();
     fflush($this->fp);  
@@ -117,7 +126,11 @@ class mapeo {
   
   function setlinea(linea_mapeada $linea) {
     $linea->id = $this->lineas_cuenta++;
+    $this->ciclo = 0;
+    $this->ciclo_numero += $linea->devuelve_tamanyo();
+    $this->bufferi = array_fill(0,$this->ciclo_numero,COLOR_BASE);
     array_push($this->lineas, $linea);
+    return $linea->id;
   }
   
   function muestra_A($i) {

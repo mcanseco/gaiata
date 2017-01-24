@@ -200,7 +200,6 @@ class componente {
     $m->mapea_linea($this->linea_asociada,$cini,$ciclos,$tramoPos,$leds);
     return $cini;
    } 
- 
 // F: TIRA_SUBE
   function tira_sube($color, $tiempo, $arriba, $paso, $tramo, $ci, mapeo $m) {
     $leds      = array();
@@ -219,30 +218,52 @@ class componente {
     };
     $num_ciclo = ($tamanyo) / $ciclos;    
     if ($arriba) {
-    	$pas = -1;
-    	$sup = ceil($paso*$num_ciclo);
-    	$jA = 0;
+      $ini = 0;
+      $jA = 0;
+      $pas = 0;
+      $base = 0;
       for ($i=0;$i<$ciclos;$i++) {
-        $num = ceil(($i+$paso)*$num_ciclo);
-        if ($num<>$jA) { $pas++; $jA=$num; }
-        if ($pas == $paso) {$pas=0;$sup=($num<$tamanyo ? $num : $tamanyo);$jA=$sup;}
-        for ($j=0; $j<$sup;$j++) {
-          array_push($leds, array($i,$j,$this->ce($color)));
-          deb("i = " . $i . " j = " . $j . " num = " . $num . " num real = " . $i*$num_ciclo );
-                  
-        }
-      }
+        $num = ceil(($i+1)*$num_ciclo);
+        $ini = floor($i*$num_ciclo);
+		  $dif = $num - $ini;
+//		  deb("num = $num / ini = $ini / dif = $dif");
+        if ($ini<>$jA) {$pas++; $jA=$ini;}        
+        if ($pas == ($paso)) {$pas = 0; $base=$ini; $jA=$ini; }     
+		 // Hacia arriba
+//		  deb("Desde 0 Hasta " . ($base+($paso*$dif-1)) . " inc = $dif");
+				for($jj=0;$jj<=$base+($paso*$dif-1);$jj++) {
+					if ($jj<$tamanyo) {
+						array_push($leds, array($i,floor($jj),$this->ce($color)));
+						deb("i=$i, jj=floor($jj), ce=$this->ce($color)");
+						}
+					
+		      }
+		}
     } 
     else { 
-      for ($i=0;$i<$ciclos;$i+=$paso) {
-        $num = (($tamanyo-1)-$num_ciclo*($i+$paso));
-        for ($j=($tamanyo-1); $j>$num;$j--) {
-          for($ii=0;$ii<$paso;$ii++) {        	          
-            array_push($leds, array($i+$ii,$j,$this->ce($color)));
-            deb("i = " . ($i+$ii) . " j = " . $j . " num = " . $num);
-          }
-        }
-      }
+      $ini = $tamanyo - 1; 
+      $jA = $ini;
+      $pas = 0;
+      $base = $ini;
+
+      for ($i=0;$i<$ciclos;$i++) {
+		  $num = floor((($tamanyo-1)-$num_ciclo*($i+1))); 
+        $ini = ceil((($tamanyo-1)-$num_ciclo*($i)));
+		  $dif = $ini - $num;
+//		  deb("num = $num / ini = $ini / dif = $dif");
+        if ($ini<>$jA) {$pas++; $jA=$ini;}        
+        if ($pas == ($paso)) {$pas = 0; $base=$ini; $jA=$ini; }     
+        for ($j=$ini; ($j>$num) ; $j--) {
+				// Hacia arriba
+				deb("Desde " . ($tamanyo-1) . " Hasta " . ($base+($paso*$dif-1)) . " inc = $dif");
+				for($jj=($tamanyo-1);$jj>=$base-($paso*$dif-1);$jj--) {
+					if ($jj<$tamanyo) {
+						array_push($leds, array($i,floor($jj),$this->ce($color)));
+						deb("i=$i, jj=floor($jj), ce=$this->ce($color)");
+						}
+				}
+			} 
+	   }
     }
 
 //    deb(var_dump($leds));
