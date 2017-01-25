@@ -8,15 +8,16 @@ require_once("gaiata.php");
 
 
 $g = new gaiata();
-$m = new mapeo("A02");
-
-
+$m = new mapeo("A2");
 
 $lineas = array();
 $brazos = array();
+$picas  = array();
+$aros   = array();
 
 // Brazos
 $actH = 0;
+$linea_actual = 0;
 for ($i=0;$i<BRAZOS_NUM;$i++) {
 	$lineas[$i] = new linea_mapeada();
 	foreach ($tramos_brazos_fisico as $tr) {
@@ -30,25 +31,44 @@ for ($i=0;$i<BRAZOS_NUM;$i++) {
 		$brazos[$i]->set_tramo(new tramo($actL,$tr))
 		$actL += $tr;
 	}
-	$g->set_brazo($brazos[$i]);      	
+	$g->set_brazo($brazos[$i]);
+	$linea_actual = $i;      	
+}
+
+// Aros
+for ($i=$linea_actual;$i<(AROS_NUM+$linea_actual);$i++) {
+	$lineas[$i] = new linea_mapeada();
+	foreach ($picas_fisico as $tr) {
+		$lineas[$i]->trama($act,$tr[0],$tr[1]);
+		$actH += $tr[0];
+	}
+	$id = $m->setlinea($lineas[$i]);
+   $picas[$i-$linea_actual] = new pica($id,"RGB");
+	$actL = 0;	
+	foreach ($picas_logico as $tr) {
+		$picas[$i-$linea_actual]->set_tramo(new tramo($actL,$tr))
+		$actL += $tr;
+	}
+	$g->set_pica($picas[$i-$linea_actual]);
+	$linea_actual = $i;      	
 }
 
 // Picas
-$actH = 0;
-for ($i=0;$i<BRAZOS_NUM;$i++) {
+for ($i=$linea_actual;$i<PICAS_NUM;$i++) {
 	$lineas[$i] = new linea_mapeada();
-	foreach ($tramos_brazos_fisico as $tr) {
+	foreach ($picas_fisico as $tr) {
 		$lineas[$i]->trama($act,$tr[0],$tr[1]);
 		$actH += $tr[0];
 	}
 	$id = $m->setlinea($lineas[$i]);
-   $brazos[$i] = new brazo($id,"RGB");
+   $picas[$i-$linea_actual] = new pica($id,"RGB");
 	$actL = 0;	
-	foreach ($tramos_brazos_logico as $tr) {
-		$brazos[$i]->set_tramo(new tramo($actL,$tr))
+	foreach ($picas_logico as $tr) {
+		$picas[$i-$linea_actual]->set_tramo(new tramo($actL,$tr))
 		$actL += $tr;
 	}
-	$g->set_brazo($brazos[$i]);      	
+	$g->set_pica($picas[$i-$linea_actual]);
+	$linea_actual = $i;      	
 }
 
 

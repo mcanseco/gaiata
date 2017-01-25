@@ -122,7 +122,24 @@ class mapeo {
 
     } 	
   }
+
+  function set_linea() {
+	 $id = $this->lineas_cuenta++;    
+    $this->lineas	[$id] = new linea_mapeada();	  	
+    $this->lineas[$id]->id = $id;
+    $this->ciclo = 0;
+    return $id;        	  	
+  	}  
+
+  function devuelve_tamanyo() { return $this->ciclo_numero; }  
   
+  function set_trama($lineaId, $act, $trama) {
+	 $this->lineas[$lineaId]->trama($act,$trama[0],$trama[1]);
+    $this->ciclo_numero += $trama[0];
+    $this->bufferi = array_fill(0,$this->ciclo_numero,COLOR_BASE);   
+  	}
+
+/* Obsoleto
   
   function setlinea(linea_mapeada $linea) {
     $linea->id = $this->lineas_cuenta++;
@@ -132,6 +149,7 @@ class mapeo {
     array_push($this->lineas, $linea);
     return $linea->id;
   }
+*/
   
   function muestra_A($i) {
     

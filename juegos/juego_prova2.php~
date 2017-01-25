@@ -8,7 +8,7 @@ require_once("gaiata.php");
 
 
 $g = new gaiata();
-$m = new mapeo("A02");
+$m = new mapeo("A2");
 
 
 
@@ -32,6 +32,27 @@ for ($i=0;$i<BRAZOS_NUM;$i++) {
 	}
 	$g->set_brazo($brazos[$i]);      	
 }
+
+// Picas
+$actH = 0;
+for ($i=0;$i<BRAZOS_NUM;$i++) {
+	$lineas[$i] = new linea_mapeada();
+	foreach ($tramos_brazos_fisico as $tr) {
+		$lineas[$i]->trama($act,$tr[0],$tr[1]);
+		$actH += $tr[0];
+	}
+	$id = $m->setlinea($lineas[$i]);
+   $brazos[$i] = new brazo($id,"RGB");
+	$actL = 0;	
+	foreach ($tramos_brazos_logico as $tr) {
+		$brazos[$i]->set_tramo(new tramo($actL,$tr))
+		$actL += $tr;
+	}
+	$g->set_brazo($brazos[$i]);      	
+}
+
+
+
 $act = 0;
 $l1 = new linea_mapeada();
 $l1->trama($act,8,array());

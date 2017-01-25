@@ -41,23 +41,25 @@ htmlbar_notebooktab: 0
 last_filefilter: 
 spell_insert_entities: 0
 spell_check_default: 1
-savedir: file:///var/www/g6/juegos
-files: /var/www/g6/componente.php
+savedir: file:///var/www/g6
+files: /var/www/g6/gaiata.php
+files: /var/www/g6/mapeo.php
 files: /var/www/g6/config.php
+files: /var/www/g6/componente.php
 files: /var/www/g6/juegos/juego_prova2.php
 files: /var/www/g6/p4_3b.php
 files: /var/www/g6/p4_3.php
-files: /var/www/g6/gaiata.php
 files: /var/www/g6/apoyo.php
-files: /var/www/g6/mapeo.php
+files: /var/www/g6/juegos/juego_prova1.php
 snr_replacetype: 0
+recent_files: file:///var/www/g6/juegos/juego_prova1.php
 recent_files: file:///var/www/g6/apoyo.php
 recent_files: file:///var/www/g6/gaiata.php
+recent_files: file:///var/www/g6/componente.php
 recent_files: file:///var/www/g6/p4_3.php
-recent_files: file:///var/www/g6/juegos/juego_prova1.php
 recent_files: file:///var/www/g6/mapeo.php
 recent_files: file:///var/www/g6/p4_3b.php
-recent_files: file:///var/www/g6/componente.php
+recent_files: file:///var/www/g6/juegos/juego_prova2.php
 recent_files: file:///var/www/g6/config.php
 recent_files: file:///var/www/g6/componente_kk.php
 recent_files: file:///var/www/g6/p2_D.php
@@ -79,11 +81,11 @@ snr_casesens: 0
 c2e.convert_iso: 0
 bookmarks_filename_mode: 0
 wrap_text_default: 0
-opendir: file:///var/www/g6
+opendir: file:///var/www/g6/juegos
 e2c.convert_xml: 1
 default_mime_type: text/plain
 view_left_panel: 0
-bmarks: ::/var/www/g6/gaiata.php:197:  function tira_sube($color, $tiempo, $arriba, mapeo $m) {\n    $leds      = array();\n    $ciclos = ( FPS * $tiempo );\n    $cini   = $this->ciclo;\n    $this->ciclos += $ciclos;\n    $num_ciclo = ($this->tamanyo) / $ciclos;\n    deb($this->tamanyo);    \n    if ($arriba) {\n      for ($i=0;$i<$ciclos;$i++) {\n        $num = ($i+1)*$num_ciclo;\n        for ($j=0; $j<$num;$j++) {\n          array_push($leds, array($i,$j,$color));\n          deb("i = " . ($i) . " j = " . $j . " num = " . $num . " num real = " . $i*$num_ciclo );\n        }\n      }\n    } \n    else { \n      for ($i=0;$i<$ciclos;$i++) {\n        $num = (($this->tamanyo-1)-$num_ciclo*($i+1));\n        for ($j=($this->tamanyo-1); $j>$num;$j--) {\n          array_push($leds, array($i,$j,$color));\n          deb("i = " . ($i) . " j = " . $j . " num = " . $num);\n          }\n        }\n    }\n\n//    deb(var_dump($leds));\n    deb("Empiezooo...");\n    deb("Id " . $this->id . " / Cini " . $cini . " / Ciclos " . $ciclos. " / Tini = 0");\n    $m->mapea_linea($this->id,$cini,$ciclos,0,$leds);\n  }\n\n} // Fin de la clase brazo\n:1037:
+bmarks: ::/var/www/g6/gaiata.php:197:  function tira_sube($color, $tiempo, $arriba, mapeo $m) {\n    $leds      = array();\n    $ciclos = ( FPS * $tiempo );\n    $cini   = $this->ciclo;\n    $this->ciclos += $ciclos;\n    $num_ciclo = ($this->tamanyo) / $ciclos;\n    deb($this->tamanyo);    \n    if ($arriba) {\n      for ($i=0;$i<$ciclos;$i++) {\n        $num = ($i+1)*$num_ciclo;\n        for ($j=0; $j<$num;$j++) {\n          array_push($leds, array($i,$j,$color));\n          deb("i = " . ($i) . " j = " . $j . " num = " . $num . " num real = " . $i*$num_ciclo );\n        }\n      }\n    } \n    else { \n      for ($i=0;$i<$ciclos;$i++) {\n        $num = (($this->tamanyo-1)-$num_ciclo*($i+1));\n        for ($j=($this->tamanyo-1); $j>$num;$j--) {\n          array_push($leds, array($i,$j,$color));\n          deb("i = " . ($i) . " j = " . $j . " num = " . $num);\n          }\n        }\n    }\n\n//    deb(var_dump($leds));\n    deb("Empiezooo...");\n    deb("Id " . $this->id . " / Cini " . $cini . " / Ciclos " . $ciclos. " / Tini = 0");\n    $m->mapea_linea($this->id,$cini,$ciclos,0,$leds);\n  }\n\n} // Fin de la clase brazo\n:1802:
 fb_show_backup_f: 0
 view_line_numbers: 1
 show_mbhl: 1
