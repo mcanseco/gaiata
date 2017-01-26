@@ -6,6 +6,46 @@ require_once("mapeo.php");
 require_once("componente.php");
 require_once("gaiata.php");
 
+$tramos_brazos_fisico = array("RGB",array(array(2, array()), array(2, array())));
+$tramos_brazos_logico = array(array(0,2),array(2,2));
+
+$aros_fisico = array("RGB", array(array(7, array()),array(2, array())));
+$aros_logico = array(2,1); 
+
+$picas_fisico = array("RGB", array(array(2, array()),array(2, array())));
+$picas_logico = array(1,1); 
+
+$gaiato = array("RGB",array(array(3, array(2))));
+ 
+
+$g = new gaiata(array($tramos_brazos_fisico,$aros_fisico,$picas_fisico,$gaiato),array($tramos_brazos_logico,$aros_logico,$picas_logico),"patataaa");
+
+
+$g->brazos[0]->rellena_color("#AAAAAA", 1, -1, -1, $g->mapeo);
+$g->aros[0]->rellena_color("#BBBBBB", 1, 0, -1, $g->mapeo);
+$g->aros[0]->rellena_color("#333333", 1, 1, -1, $g->mapeo);
+$g->aros[1]->rellena_color("#CCCCCC", 1, -1, -1, $g->mapeo);
+$g->picas[0]->rellena_color("#EEEEEE", 1, -1, -1, $g->mapeo);
+$g->picas[1]->rellena_color("#DDDDDD", 1, -1, -1, $g->mapeo);
+$g->gaiato[0]->rellena_color("#FFFFFF", 1, -1, -1, $g->mapeo);
+
+
+/*
+$tres = $g->brazos[0]->tira_sube_sola("#AAAAAA", 1, true, 1, -1, -1, $g->mapeo);
+$tres = $g->aros[0]->tira_sube_sola("#BBBBBB", 1, true, 1, -1, -1, $g->mapeo);
+$tres = $g->aros[1]->tira_sube_sola("#CCCCCC", 1, true, 1, -1, -1, $g->mapeo);
+$tres = $g->picas[0]->tira_sube_sola("#DDDDDD", 1, true, 1, -1, -1, $g->mapeo);
+$tres = $g->picas[1]->tira_sube_sola("#EEEEEE", 1, true, 1, -1, -1, $g->mapeo);
+$tres = $g->gaiato[0]->tira_sube_sola("#FFFFFF", 1, true, 1, -1, -1, $g->mapeo);
+ echo $tres . "</br>";
+// $tres = $g->aros[0]->tira_sube_sola("#00FF00", 1, true, 1, 1, 0, $g->mapeo);
+*/
+
+$g->mapeo->almacena();
+
+
+exit();
+
 // Elementos: BRAZOS / AROS / PICAS / GAIATO
 $elementos = array(1,1,1,1);
 

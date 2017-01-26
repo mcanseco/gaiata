@@ -98,8 +98,8 @@ class componente {
 
     for ($i=0;$i<$ciclos;$i++)
      for ($j=0;$j<$tamanyo;$j++)
-       array_push($leds, array($i,$j,$color) );
-    $m->mapea_linea($this->id,$cini,$ciclos,$tramoPos,$leds);
+       array_push($leds, array($i,$j,ce($color)) );
+    $m->mapea_linea($this->linea_asociada,$cini,$ciclos,$tramoPos,$leds);
     return $cini;
   }
 
@@ -272,40 +272,6 @@ class componente {
     
     $m->mapea_linea($this->linea_asociada,$cini,$ciclos,$tramoPos,$leds);
     return $cini;
-  }
-
-// F: TIRA_SUBE_SOLA -- NO TOCAR
-  function tira_sube_sola2($color, $tiempo, $arriba, $paso , mapeo $m) {
-    $leds      = array();
-    $ciclos = ( FPS * $tiempo );
-    $this->ciclo += $ciclos;
-    $num_ciclo = ($this->tamanyo-($paso-1)) / $ciclos;
-    if ($arriba) {
-      $ini = 0;
-      for ($i=0;$i<$ciclos;$i++) {
-        $num = ($i+1)*$num_ciclo;
-        for ($j=($num > $ini ? $ini : $jA); $j<$num; $j++, $ini++) {
-          for($jj=0;$jj<$paso;$jj++) {         
-            array_push($leds, array($i,($j+$jj),$this->ce($color)));
-            deb("i = " . $i . " j = " . ($j+$jj) . " num = " . $num . " num real = " . $i*$num_ciclo );			 }          
-          $jA = $j; 
-        }
-      }
-    } 
-    else {
-      $ini = $this->tamanyo - 1; 
-      for ($i=0;$i<$ciclos;$i++) {
-        $num = (($this->tamanyo-1)-$num_ciclo*($i+1));
-        for ($j=($num < $ini ? $ini : $jA); $j>$num;$j--, $ini--) {
-          for($jj=0;$jj<$paso;$jj++) {        	
-            array_push($leds, array($i,($j-$jj),$this->ce($color)));
-            deb("i = " . ($i) . " j = " . ($j-$jj) . " num = " . $num);
-          }
-          $jA = $j;
-        }
-        }
-    }
-    $m->mapea_linea($this->linea_asociada,$cini,$ciclos,0,$leds);
   }
 
 // F: TIRA_SUBE_SOLA  

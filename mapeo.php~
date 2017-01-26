@@ -18,7 +18,7 @@ class linea_mapeada {
  
   
    
-  function trama($inicio,$tamanyo,$ocultas) {
+  function trama($inicio,$tamanyo,$ocultas) {    
     array_push($ocultas,$tamanyo);
     $oi = 0;    
     for ($t=0;$t<$tamanyo;$t++) {      
@@ -50,7 +50,7 @@ class linea_mapeada {
 
 class mapeo {
 
-  private $lineas = array();
+  public $lineas = array();
   private $lineas_cuenta = 0;
   private $fp;
   private $ft;
@@ -124,18 +124,23 @@ class mapeo {
   }
 
   function set_linea() {
-	 $id = $this->lineas_cuenta++;    
-    $this->lineas	[$id] = new linea_mapeada();	  	
+	  $id = $this->lineas_cuenta++;    
+    $this->lineas[$id] = new linea_mapeada();	  	
     $this->lineas[$id]->id = $id;
     $this->ciclo = 0;
     return $id;        	  	
   	}  
+
+  function devuelve_tamanyo() { return $this->ciclo_numero; }  
   
   function set_trama($lineaId, $act, $trama) {
-	 $this->lineas[$lineaId]->trama($act,$trama[0],$trama[1]);
+  	  echo "lineaId=$lineaId  act=$act trama0=$trama[0] trama1=$trama[1] </br>";
+	  $this->lineas[$lineaId]->trama($act,$trama[0],$trama[1]);
     $this->ciclo_numero += $trama[0];
     $this->bufferi = array_fill(0,$this->ciclo_numero,COLOR_BASE);   
   	}
+
+($inicio,$tamanyo,$ocultas)  
 
 /* Obsoleto
   
