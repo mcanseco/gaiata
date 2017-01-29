@@ -1,0 +1,44 @@
+<?php
+
+require_once("config.php");
+require_once("apoyo.php");
+require_once("mapeo.php");
+require_once("componente.php");
+require_once("gaiata.php");
+
+class gaiata_simulada extends gaiata {
+
+  public const SIMULACION = TRUE;
+	
+  function dibuja_brazos() {
+  	for ($i=0;$i<NUM_BRAZOS;$i++)    
+    foreach ($this->brazos as $br) {
+    	$z = -1;	
+		$inicios = $this->get_inicios_tramos();
+		$actual = array_shift($inicios);
+		for ($j=0;$j<$this->get_tamanyo();$j++) {
+			if ($actual==$j) $z++;
+			$x = (950 + $i*50);
+			$y = (570-($j+$z)*5);
+			$dato = $this->mapeo->linea_mapeada[$tr->linea_asociada]->A[$j];
+			echo <<<END
+
+				ctx.beginPath();
+				ctx.arc($x,$y,2,0,2*Math.PI);
+				ctx.fillStyle = datos[$dato];
+				ctx.fill();
+				ctx.closePath();
+
+			END;
+		}    
+    }
+  }
+	  	
+  	
+	
+	
+	
+}
+
+
+?>

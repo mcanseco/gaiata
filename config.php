@@ -5,7 +5,7 @@
 
 // Velocidad
 
-define('FPS', 8);
+define('FPS', 16);
 //define('', );
 
 // Colores
@@ -17,7 +17,7 @@ define('COLOR_VERDE_BASE','#67FF0D');
 
 // Especificaciones de la GAIATA
 
-define('BRAZOS_NUM',1); 
+define('BRAZOS_NUM',4); 
 define('PICAS_NUM', 8);
 define('PICAS_BAJO_NUM', 5);
 define('PICAS_ALTO_NUM', 3);

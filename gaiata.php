@@ -20,6 +20,7 @@ class gaiato extends componente {
 class gaiata {
 
   // Elementos de la Gaiata
+  public  $SIMULACION = FALSE;
   public  $brazos = array();
   private $brazos_cuenta = 0;
   public  $picas = array();
@@ -34,7 +35,7 @@ class gaiata {
   public $mapeo;
 
   function __construct($fisico, $logico, $nombre_archivo) {
-		$this->mapeo = new mapeo($nombre_archivo);
+		$this->mapeo = new mapeo($nombre_archivo,$SIMULACION);
 		$act = 0;      
       // Brazos		
 		for ($i=0;$i<BRAZOS_NUM;$i++) {
@@ -54,7 +55,7 @@ class gaiata {
 			$idB = $this->set_aro($idL,$fisico[1][0]);					
 		  $this->mapeo->set_trama($idL,$act,$fisico[1][1][$i]);
 		  $act += $fisico[1][1][$i][0];
-		  $cociente = floor(($fisico[1][1][$i][0]-count($fisico[1][1][$i][1]))) / $logico[1][$i];
+		  $cociente = floor(($fisico[1][1][$i][0]-count($fisico[1][1][$i][1])) / $logico[1][$i]);
 		  $resto = ($fisico[1][1][$i][0]-count($fisico[1][1][$i][1])) % $logico[1][$i];
 		  for ($k=0;$k<($logico[1][$i]-1);$k++) {
 				$this->aros[$idB]->set_tramo(new tramo($cociente*$k,$cociente));
@@ -63,15 +64,15 @@ class gaiata {
 	 }
 	 // Picas
 	 for ($i=0;$i<count($logico[2]);$i++) {
-			$idL = $this->mapeo->set_linea();			
-			$idB = $this->set_pica($idL,$fisico[2][0]);					
+		  $idL = $this->mapeo->set_linea();			
+		  $idB = $this->set_pica($idL,$fisico[2][0]);					
 		  $this->mapeo->set_trama($idL,$act,$fisico[2][1][$i]);
 		  $act += $fisico[2][1][$i][0];
-		  $cociente = floor(($fisico[2][1][$i][0]-count($fisico[2][1][$i][1]))) / $logico[2][$i];
+		  $cociente = floor(($fisico[2][1][$i][0]-count($fisico[2][1][$i][1])) / $logico[2][$i]);
 		  $resto = ($fisico[2][1][$i][0]-count($fisico[2][1][$i][1])) % $logico[2][$i];
 		  for ($k=0;$k<($logico[2][$i]-1);$k++) {
 				$this->picas[$idB]->set_tramo(new tramo($cociente*$k,$cociente));
-		  	}
+		  }
 		  $this->picas[$idB]->set_tramo(new tramo($cociente*($logico[2][$i]-1),$cociente+$resto));	
 	 }
 	 // Gaiato

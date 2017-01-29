@@ -33,6 +33,10 @@ class linea_mapeada {
     $this->tamanyo += $tamanyo;   
   }
 
+  function devuelve_tamanyo_visible() {
+		return $this->Ac;  	
+  	}
+
   function devuelve_tamanyo() {
 		return $this->tamanyo;  	
   	}  
@@ -50,38 +54,37 @@ class linea_mapeada {
 
 class mapeo {
 
-  public $lineas = array();
-  private $lineas_cuenta = 0;
+  public  $lineas = array();
+  public  $lineas_cuenta = 0;
   private $fp;
   private $ft;
-  private $ciclo;
-  private $ciclo_numero;
+  private $ciclo = 0;
+  private $ciclo_numero = 0;
   private $buffer = array();
   private $bufferi = array();
-
+  private $simulacion;
 
   
-  function __construct($archivo) {
+  function __construct($archivo,$simulacion) {
+  	$this->simulacion = $simulacion;
+  	if (!($simulacion)) {
     $this->fp = fopen($archivo . ".dat","w+");
     $this->ft = fopen($archivo . ".txt","w+");
     fwrite($this->fp, chr(FPS) );
-    fwrite($this->ft, FPS . "|");
-/*    foreach($elementos as $e) {
-		fwrite($this->ft, $e);    	
-    }
-*/ 
-//   $this->bufferi = array_fill(0,$ciclo_numero,COLOR_BASE);
     $this->ciclo = 0;
     $this->ciclo_numero = 0; // $ciclo_numero;
     ob_flush();
     flush();
     fflush($this->fp);  
     fflush($this->ft);
+   }
   }
 
   function __destruct() {
+  	if (!($this->simulacion)) {   
     fclose($this->fp);
     fclose($this->ft);
+   }
   
   }
   
@@ -134,7 +137,7 @@ class mapeo {
   function devuelve_tamanyo() { return $this->ciclo_numero; }  
   
   function set_trama($lineaId, $act, $trama) {
-  	  echo "lineaId=$lineaId  act=$act trama0=$trama[0] trama1=$trama[1] </br>";
+//  	  echo "lineaId=$lineaId  act=$act trama0=$trama[0] trama1=$trama[1] </br>";
 	  $this->lineas[$lineaId]->trama($act,$trama[0],$trama[1]);
     $this->ciclo_numero += $trama[0];
     $this->bufferi = array_fill(0,$this->ciclo_numero,COLOR_BASE);   

@@ -39,7 +39,7 @@ class componente {
   private  $tamanyo = 0;
   private	$tr = 0;
   private  $esquema_de_color;
-  private	$linea_asociada;
+  public 	$linea_asociada;
 
   function __construct($linea, $esquema) {
     $this->linea_asociada = $linea;
@@ -70,6 +70,14 @@ class componente {
          return $cini;
       }
    }
+
+  function get_tamanyo() { return $this->tamanyo; }
+  
+  function get_inicios_tramos() {   
+	$inicios = array();  	
+  	foreach($this->tramos as $tr) array_push($inicios, $tr->inicio);
+  	return $inicios; 
+  }
 
   // Actualiza el color segun su estado
   function ce($color) {
