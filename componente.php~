@@ -106,7 +106,7 @@ class componente {
 
     for ($i=0;$i<$ciclos;$i++)
      for ($j=0;$j<$tamanyo;$j++)
-       array_push($leds, array($i,$j,ce($color)) );
+       array_push($leds, array($i,$j,$this->ce($color)) );
     $m->mapea_linea($this->linea_asociada,$cini,$ciclos,$tramoPos,$leds);
     return $cini;
   }
@@ -283,7 +283,7 @@ class componente {
   }
 
 // F: TIRA_SUBE_SOLA  
-  function tira_sube_sola($color, $tiempo, $arriba, $paso, $tramo, $ci, mapeo $m) {
+  function tira_sube_sola($color, $tiempo, $arriba, $paso, $tramo, $ci, mapeo $m) {  
     $leds      = array();
     $ciclos = ( FPS * $tiempo );
     if ($tramo<0) {

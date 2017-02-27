@@ -70,7 +70,6 @@ class gaiata {
 		  $act += $fisico[2][1][$i][0];
 		  $cociente = floor(($fisico[2][1][$i][0]-count($fisico[2][1][$i][1])) / $logico[2][$i]);
 		  $resto = ($fisico[2][1][$i][0]-count($fisico[2][1][$i][1])) % $logico[2][$i];
-		  echo "---- $idL = $cociente y $resto \n"; 	  
 		  for ($k=0;$k<($logico[2][$i]-1);$k++) {
 				$this->picas[$idB]->set_tramo(new tramo($cociente*$k,$cociente));
 		  }

@@ -11,7 +11,7 @@ class gaiata_simulada extends gaiata {
   public $SIMULACION = TRUE;
 	
   function dibuja_brazos() {
-  	for ($i=0;$i<BRAZOS_NUM;$i++)    
+  	 $i = 0;  
     foreach ($this->brazos as $br) {
     	$z = -1;	
 		$inicios = $br->get_inicios_tramos();
@@ -27,7 +27,8 @@ class gaiata_simulada extends gaiata {
 			echo "ctx.fillStyle = datos[$dato]; \n";
 			echo "ctx.fill(); \n";
 			echo "ctx.closePath(); \n \n";
-		}    
+		}
+		$i++;    
     }
   }
 	  	
@@ -88,7 +89,7 @@ class gaiata_simulada extends gaiata {
  	  
  	  for ($j=0;$j<$this->gaiato[0]->get_tamanyo();$j++) {	
 			$x = (1200 + $i*50);
-			$y = (95-($j)*5);
+			$y = (95+($j)*5);
 			$dato = $this->mapeo->lineas[$this->gaiato[0]->linea_asociada]->A[$j];
 		 	echo "ctx.beginPath(); \n";
 			echo "ctx.arc($x,$y,2,0,2*Math.PI); \n";

@@ -1,92 +1,47 @@
 <?php
 
-require_once("config.php");
-require_once("apoyo.php");
-require_once("mapeo.php");
-require_once("componente.php");
-require_once("gaiata.php");
+require_once("../config.php");
+require_once("../apoyo.php");
+require_once("../mapeo.php");
+require_once("../componente.php");
+require_once("../gaiata.php");
 
-// Elementos: BRAZOS / AROS / PICAS / GAIATO
-$elementos = array(1,0,1,0);
+$colores = array("#FF0000",COLOR_VERDE_BASE,COLOR_VERDE_MAS_CLARO,COLOR_VERDE_OSCURO,COLOR_CLARO);
 
-// +++ Especificación Gaiata +++
-$g = new gaiata();
-// HW
-$brazosHW = array();
-$arosHW = array();
-$picasHW  = array();
+$tiempo = 20;
+
+//$g = new gaiata(array($tramos_brazos_fisico,$aros_fisico,$picas_fisico,$gaiato),array($tramos_brazos_logico,$aros_logico,$picas_logico),"a7");
+
+$g = new gaiata(array($tramos_brazos_fisico,$aros_fisico,$picas_fisico,$gaiato),array($tramos_brazos_logico,$aros_logico,$picas_logico),"a0");
+
+$gaiato_direccion = true;
 
 
-$totalH = 0;
-for ($i=0; $i<BRAZOS_NUM;$i++) {
-  	$inicioA = 0;
-  	$brazosHW[$i] = new linea_mapeada();
-  	for ($k=0;$k<count($tramos_brazos_fisico);$k++) {
-  		$brazosHW[$i]->trama($inicioA,$tramos_brazos_fisico[$k][0],$tramos_brazos_fisico[$k][1]);
-  		$inicioA += $tramos_brazos_fisico[$k][0];
-  		}
-  	$totalH += $inicioA;	
-	}
+	for ($i=0;$i<PICAS_NUM;$i++) {
+		$g->picas[$i]->rellena_color($colores[0], $tiempo, -1, -1, $g->mapeo);
+	//	debOK("i = $i /  ");
+		}
 
-for ($i=0;$i<AROS_NUM;$i++) {
-	$inicioA = 0;
-	$arosHW[$i] = new linea_mapeada();
-  	for ($k=0;$k<count($aros);$k++) {
-  		$arosHW[$i]->trama($inicioA,$aros[$k],array());
-  		$inicioA += $arosHW[$k];
-  		}	
-	}	
+	for ($i=0;$i<BRAZOS_NUM;$i++) 
+		for ($j=0;$j<count($tramos_brazos_logico);$j++) {	
+			$g->brazos[$i]->rellena_color($colores[0], $tiempo, -1, -1, $g->mapeo); 
+//	 		$g->brazos[$i]->tira_sube($colores[(($k+$j) % 2)], $tiempo, false, 1, $j, $temporal, $g->mapeo);
+	 		}
+
+	$g->aros[0]->rellena_color($colores[0], $tiempo, -1, -1, $g->mapeo);
+	$g->aros[1]->rellena_color($colores[0], $tiempo, -1, -1, $g->mapeo);
+//	$g->aros[1]->tira_sube_sola($colores[2], $tiempo, false, 1, -1, $temporal, $g->mapeo);
 	
-for ($i=0; $i<PICAS_NUM;$i++) {
-  	$inicioA = 0;
-  	$picasHW[$i] = new linea_mapeada();
-  	for ($k=0;$k<count($picas);$k++) {
-  		$picasHW[$i]->trama($inicioA,$picas[$k],array());
-  		$inicioA += $picas[$k];
-  		}
-  	$totalH += $inicioA;	
-	}
 
-$m = new mapeo("juego_prova1",$totalH,$elementos);
+// 	$temporal = $g->gaiato[0]->rellena_color($colores[0], $tiempo, -1, -1, $g->mapeo);
+	$g->gaiato[0]->rellena_color($colores[0], $tiempo, -1, -1, $g->mapeo);
+	
+	//$gaiato_direccion = !$gaiato_direccion;
 
-for ($i=0; $i<BRAZOS_NUM;$i++) {
-	$m->setlinea($brazosHW[$i]); 
-   }
 
-for ($i=0; $i<AROS_NUM;$i++) {
-	$m->setlinea($arosHW[$i]); 
-   }
 
-for ($i=0; $i<PICAS_NUM;$i++) {
-	$m->setlinea($picasHW[$i]);
-   }
+echo "Definida </br>";
 
-$m->setlinea($gaiato);
-
-$g->set_mapeo($m);
-
-// LG
-$brazosLG = array();
-$picasLG = array();
-for ($i=0; $i>BRAZOS_NUM;$i++) {
-   $brazosLG[$i]	 = new brazo();
-   $inicioA = 0;
-   for ($k=0;$k<count($tramos_brazos_logico);$k++) {
-   	$brazosLG[$i]->set_tramo(new tramo($inicioA,$tramos_brazos_logico[$k]));
-   	$inicioA += $tramos_brazos_logico[$k];
-   	}
-   $g->set_brazo($brazosLG[$i]);
-	}
-
-for ($i=0; $i>PICAS_NUM;$i++) {
-   $picasLG[$i]	 = new pica();
-   $inicioA = 0;
-   for ($k=0;$k<count($picas);$k++) {
-   	$picasLG[$i]->set_tramo(new tramo($inicioA,$picas[$k]));
-   	$inicioA += $pcias[$k];
-   	}
-   $g->set_pica($picasLG[$i]);
-	}
-
+$g->mapeo->almacena();
 
 ?>

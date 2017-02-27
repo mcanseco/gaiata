@@ -92,11 +92,12 @@ class mapeo {
   function almacena() {
     $k = 0;
     $segundo = $this->ciclo_numero * FPS;
-    deb("ALMACENANDO...");
+    debOK("ALMACENANDO... Ciclo= $this->ciclo_numero / Ciclos=$this->ciclo");
+    
     foreach ($this->buffer as $led) {
     	fwrite($this->ft, $led . "|");
     	fwrite($this->fp, rgb2chr($led));
-    	if ($k++ % $segundo == 0) deb("Segundo almacenado...");
+    	if ($k++ % $segundo == 0) debOK("Segundo almacenado...");
     }
     ob_flush();
     flush();
@@ -113,7 +114,7 @@ class mapeo {
         $this->buffer = array_merge($this->buffer, $this->bufferi);
         $this->ciclo++;
       }
-    
+    debOK("-- Mapeo linea $id / Cini $cini / Tini $tini  / Ciclos $ciclos ");
     // Mapear en el buffer
     foreach ($L as $LED) {
 //      deb("Cini = " . $cini . " LED[0] = " . $LED[0] . " ciclo_numero = " . $this->ciclo_numero);

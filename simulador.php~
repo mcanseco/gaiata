@@ -72,7 +72,7 @@ function draw(){
 	$g->dibuja_brazos(); 
 	$g->dibuja_aros();
 	$g->dibuja_picas();
-
+	$g->dibuja_gaiato();
 ?>
 
   }
@@ -85,7 +85,7 @@ function draw(){
 
 <input type="file" id="archivo" name="file" />
 <button onClick="cargar()">Cargar el archivo</button>
-<canvas id="myCanvas" width="1250" height="590" style="border:1px solid #000000;">
+<canvas id="myCanvas" width="1250" height="590" style="border:1px solid #000000;background-color: #000000">
 </canvas>
 <script>
 	
@@ -106,7 +106,7 @@ function draw(){
 	var c = document.getElementById("myCanvas");
 	var ctx = c.getContext("2d");	
 	var lectura;
-	var st_max = <?=($g->mapeo->devuelve_tamanyo()+1)?>;
+	var st_max = <?=($g->mapeo->devuelve_tamanyo())?>;
 	var start = parseInt(0) || 0;
     	var longitud = parseInt(8*st_max);
  	   	var iteracion = 0;

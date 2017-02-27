@@ -9,7 +9,7 @@ require_once("gaiata.php");
 $tramos_brazos_fisico = array("RGB",array(array(2, array()), array(2, array())));
 $tramos_brazos_logico = array(array(0,2),array(2,2));
 
-$aros_fisico = array("RGB", array(array(6, array()),array(2, array())));
+$aros_fisico = array("RGB", array(array(7, array()),array(2, array())));
 $aros_logico = array(2,1); 
 
 $picas_fisico = array("RGB", array(array(2, array()),array(2, array())));

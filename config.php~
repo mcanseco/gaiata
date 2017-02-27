@@ -11,7 +11,9 @@ define('FPS', 8);
 // Colores
 
 define('COLOR_BASE','#000000');
+define('COLOR_CLARO','#FFFFFF');
 define('COLOR_VERDE_CLARO','#00FF43');
+define('COLOR_VERDE_MAS_CLARO','#BEFFD0');
 define('COLOR_VERDE_FUERTE','#11E80C');
 define('COLOR_VERDE_BASE','#67FF0D');
 
@@ -38,9 +40,11 @@ $gaiato = array("RGB",array(array(20, array(15,16,17,18,19))));
 // Depuración
 
 function deb($mensaje) {
-  echo '<script>console.log("' . $mensaje .'")</script>';
-  
+ // echo '<script>console.log("' . $mensaje .'")</script>';
 }
 
+function debOK($mensaje) {
+  echo '<script>console.log("' . $mensaje .'")</script>';
+}
 
 ?>
